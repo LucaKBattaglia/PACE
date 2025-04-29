@@ -8,6 +8,8 @@ public class DroneAttack : MonoBehaviour
     public GameObject baseballPrefab;
     public float attackInterval = 2f; // Interval between attacks
     private float lastAttackTime;
+
+    [SerializeField] private float fireSpeed;
     void Update()
     {
         transform.LookAt(player.transform); // Look at the player
@@ -23,11 +25,11 @@ public class DroneAttack : MonoBehaviour
     void Attack()
     {
         // Spawn baseball projectile in the direction of the player
-        GameObject baseball = Instantiate(baseballPrefab, transform.position, transform.rotation);
+        GameObject baseball = Instantiate(baseballPrefab, transform.position, Quaternion.identity/*transform.rotation*/);
         Rigidbody rb = baseball.GetComponent<Rigidbody>();
         if (rb != null)
         {
-            rb.velocity = transform.forward * 10f; // Adjust speed as needed
+            rb.velocity = transform.forward * fireSpeed; // Adjust speed as needed
         }
     }
 
