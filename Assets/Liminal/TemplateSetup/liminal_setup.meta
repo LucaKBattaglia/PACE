@@ -1,5 +1,10 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Liminal/TemplateSetup/liminal_setup.meta
 guid: ec6e73d993e1391439b23b4ce0c624f1
+========
+guid: 41e441ea667b339479c66b877189738e
+folderAsset: yes
+>>>>>>>> BatExperimenting:Assets/Resources.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
