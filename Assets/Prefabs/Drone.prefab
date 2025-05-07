@@ -112,6 +112,7 @@ MonoBehaviour:
   attackInterval: 4
   attackRange: 20
   fireSpeed: 10
+  spawnOffset: 1.5
 --- !u!114 &1021405448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,8 +130,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  moveSpeed: 8
-  reachThreshold: 2.5
+  moveSpeed: 5
+  reachThreshold: 0.1
 --- !u!1 &4147669893383395375
 GameObject:
   m_ObjectHideFlags: 0
