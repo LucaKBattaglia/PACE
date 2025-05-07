@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts.meta
 guid: f8d54247b723bbd45898ed3fbc02bef0
+========
+guid: 2f3f3592890268845a2c60ff0fd1b882
+>>>>>>>> BatExperimenting:Assets/Prefabs.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
