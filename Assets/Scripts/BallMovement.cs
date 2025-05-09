@@ -8,29 +8,45 @@ public class BallMovement : MonoBehaviour
     // Start is called before the first frame update
 
     private Rigidbody rb;
-    private Rigidbody otherRb;
+    private BatVelocityEstimator otherRb;
     private Vector3 newVelocity;
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField] private float boostFactor = 5f;
+    [SerializeField] private float minSpeed = 2.5f;
 
-    void OnTriggerEnter(Collider other)
-    {
+    // void OnTriggerEnter(Collider other)
+    // {
+    //     if(other.gameObject.CompareTag("Bat")) {
+
+    //         rb = GetComponent<Rigidbody>();
+    //         otherRb = other.GetComponent<Rigidbody>();
+    //         //newVelocity = Vector3.Cross(rb.velocity, otherRb.velocity);
+    //         newVelocity = otherRb.tipVelocity;
+    //         rb.velocity = newVelocity;
+    //         //Debug.Log(otherRb.velocity);
+    //     }
+    // }
+
+    void OnCollisionEnter(Collision other) {
         if(other.gameObject.CompareTag("Bat")) {
+            var batEstimator = other.gameObject.GetComponent<BatVelocityEstimator>();
+            if (batEstimator == null) return;
 
-            rb = GetComponent<Rigidbody>();
-            otherRb = other.GetComponent<Rigidbody>();
-            newVelocity = Vector3.Cross(-rb.velocity, otherRb.velocity);
-            rb.velocity = newVelocity;
-            otherRb.velocity = Vector3.zero;
-            //speed = 
+            ContactPoint contact = other.contacts[0];
+            Vector3 contactPoint = contact.point;
+            Vector3 batCenter = batEstimator.transform.position;
+
+            Vector3 r = contactPoint - batCenter;
+            Vector3 pointVelocity = batEstimator.linearVelocity + Vector3.Cross(batEstimator.angularVelocity, r);
+
+            Rigidbody rb = GetComponent<Rigidbody>(); 
+            Vector3 finalVelocity = pointVelocity * boostFactor;
+
+            if(finalVelocity.magnitude < minSpeed){
+                finalVelocity = finalVelocity.normalized * minSpeed;
+            }
+
+            rb.velocity = finalVelocity;
         }
     }
 }

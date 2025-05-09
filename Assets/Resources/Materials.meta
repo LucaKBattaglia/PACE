@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Resources/Materials.meta
 guid: 20a70677efd3a76459b4273d9d244692
+========
+guid: 8177a0ea7fe66df448e3017c14a0a561
+>>>>>>>> BatExperimenting:Assets/Materials/Skybox.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
