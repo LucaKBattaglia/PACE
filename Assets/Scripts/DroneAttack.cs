@@ -27,17 +27,23 @@ public class DroneAttack : MonoBehaviour
     }
 
     void Attack()
+{
+    Vector3 spawnPosition = transform.position + transform.forward * spawnOffset;
+    GameObject baseball = Instantiate(baseballPrefab, spawnPosition, Quaternion.identity);
+    
+    Rigidbody rb = baseball.GetComponent<Rigidbody>();
+    if (rb != null)
     {
-        // Calculate spawn position slightly in front of the drone
-        Vector3 spawnPosition = transform.position + transform.forward * spawnOffset;
-
-        GameObject baseball = Instantiate(baseballPrefab, spawnPosition, Quaternion.identity);
-        Rigidbody rb = baseball.GetComponent<Rigidbody>();
-        if (rb != null)
-        {
-            rb.velocity = transform.forward * fireSpeed;
-        }
+        rb.velocity = transform.forward * fireSpeed;
     }
+
+    BaseballDirectionTracker tracker = baseball.GetComponent<BaseballDirectionTracker>();
+    if (tracker != null)
+    {
+        tracker.SetOriginalDirection(transform.forward);
+    }
+}
+
 
     // Draw the attack range as a wire sphere in the editor
     void OnDrawGizmosSelected()

@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: -1512194710623670464}
   - component: {fileID: -4873545192088539355}
   - component: {fileID: 3296300798289561228}
+  - component: {fileID: 5373522981558070552}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Baseball
@@ -134,8 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43811d81f8a9b124c8fd2f52dfd88198, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boostFactor: 5
-  minSpeed: 2.5
+  reverseSpeed: 12
 --- !u!54 &-4873545192088539355
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -256,3 +256,15 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!114 &5373522981558070552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 691511484709724287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da595a9c6216d8f4598f380c90d1d2ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
