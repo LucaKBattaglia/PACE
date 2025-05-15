@@ -6,16 +6,21 @@ public class DroneAttack : MonoBehaviour
 {
     public GameObject player;
     public GameObject baseballPrefab;
-    public float attackInterval = 2f; // Interval between attacks
+    public float attackInterval = 2f;
+    public float attackRange = 15f;
+    [SerializeField] private float fireSpeed = 10f;
+    [SerializeField] private float spawnOffset = 1.5f; // Distance in front of the drone to spawn the baseball
+
     private float lastAttackTime;
 
-    [SerializeField] private float fireSpeed;
     void Update()
     {
-        transform.LookAt(player.transform); // Look at the player
+        // Always look at the player
+        transform.LookAt(player.transform);
 
-        // Check if enough time has passed since the last attack
-        if (Time.time >= lastAttackTime + attackInterval)
+        // Only attack if player is within range
+        float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
+        if (distanceToPlayer <= attackRange && Time.time >= lastAttackTime + attackInterval)
         {
             Attack();
             lastAttackTime = Time.time;
@@ -24,13 +29,21 @@ public class DroneAttack : MonoBehaviour
 
     void Attack()
     {
-        // Spawn baseball projectile in the direction of the player
-        GameObject baseball = Instantiate(baseballPrefab, transform.position, Quaternion.identity/*transform.rotation*/);
+        // Calculate spawn position slightly in front of the drone
+        Vector3 spawnPosition = transform.position + transform.forward * spawnOffset;
+
+        GameObject baseball = Instantiate(baseballPrefab, spawnPosition, Quaternion.identity);
         Rigidbody rb = baseball.GetComponent<Rigidbody>();
         if (rb != null)
         {
-            rb.velocity = transform.forward * fireSpeed; // Adjust speed as needed
+            rb.velocity = transform.forward * fireSpeed;
         }
     }
 
+    // Draw the attack range as a wire sphere in the editor
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
+    }
 }
