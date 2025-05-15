@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/StreamingAssets.meta
 guid: 8e8bc26562e895f488d9a9dad281a85b
+========
+guid: 9a5249e707bec4446b61c45271935b14
+>>>>>>>> BatExperimenting:Assets/Materials.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
