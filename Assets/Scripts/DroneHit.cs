@@ -6,9 +6,11 @@ public class DroneHit : MonoBehaviour
 {
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Baseball")) // Assuming baseball has a tag "Baseball"
+        //This is a double up, we already destroy and manage the collision in the BallDestroyer script
+        /*if (other.CompareTag("Baseball")) // Assuming baseball has a tag "Baseball"
         {
             Destroy(gameObject); // Destroy the drone
-        }
+            GameManager.Instance.droneHitCount++;
+        }*/
     }
 }

@@ -14,17 +14,20 @@ public class BaseballBat : MonoBehaviour
 
     void Update()
     {
-        previousPosition = transform.position;
+        previousPosition = transform.position;  
+        //This is being set every frame but we only really need to know when the ball is hit
+        //How about you take the position from the hit frame and the position from the next frame,
+        //largely the same thing but less computations every frame
     }
 
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Baseball"))
-        {
+        {   
             Rigidbody rb = other.GetComponent<Rigidbody>();
             if (rb != null)
             {
-               
+                GameManager.Instance.ballsHitCount++; 
                 Vector3 hitDirection = (transform.position - previousPosition).normalized;
 
                 rb.velocity = hitDirection * hitForce;
@@ -33,6 +36,9 @@ public class BaseballBat : MonoBehaviour
     }
 }
 
+
+
+//Why are we keeping this? 
 // public class BaseballBat : MonoBehaviour
 // {
 //     public float hitForce = 10f; // Force applied to the baseball when hit
