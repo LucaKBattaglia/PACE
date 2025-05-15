@@ -1,32 +1,32 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BallDestroyer : MonoBehaviour
 {
-    [SerializeField] private float lifetime = 10f; // Adjustable time before the ball despawns
-
+    [SerializeField] private bool BatHit = false;
+    // Start is called before the first frame update
     void Start()
     {
-        // Start coroutine to destroy the ball after a set time
-        StartCoroutine(DestroyAfterTime());
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Bat")) 
         {
-            Destroy(gameObject); // Destroy ball if player is hit
-        } 
-
-        else if (other.gameObject.CompareTag("Drone"))
-        {
-            Destroy(other.gameObject); // Destroy drone
-            Destroy(gameObject); // Destroy ball regardless
+             BatHit = true;
+        } else if (other.gameObject.CompareTag("Player")){
+            //Do something 
+        } else if (other.gameObject.CompareTag("Drone") && BatHit == true){
+            Destroy(other.gameObject);
+            Destroy(gameObject);
         }
-    }
-    private IEnumerator DestroyAfterTime()
-    {
-        yield return new WaitForSeconds(lifetime);
-        Destroy(gameObject);
     }
 }
