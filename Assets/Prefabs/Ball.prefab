@@ -140,6 +140,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boostFactor: 5
   minSpeed: 2.5
+  aimAssistAngle: 30
+  aimAssistDistance: 10
+  redirectStrength: 1
 --- !u!54 &-4873545192088539355
 Rigidbody:
   m_ObjectHideFlags: 0
