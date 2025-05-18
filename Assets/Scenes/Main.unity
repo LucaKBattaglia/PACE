@@ -880,7 +880,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeRemaining: 180
-  timerIsRunning: 0
   timerText: {fileID: 1887681744}
 --- !u!4 &190297206
 Transform:
