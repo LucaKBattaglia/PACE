@@ -1,20 +1,20 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using System.Text.RegularExpressions;
 
 public class DroneMovement : MonoBehaviour
 {
-    public Transform[] checkpoints;
     public float moveSpeed = 5f;
     public float reachThreshold = 0.5f;
 
     private int currentCheckpointIndex = 0;
     private bool hasGeneratedNewPoints = false;
     private bool loopingBetweenFinalPoints = false;
-    private List<Transform> checkpointList;
+    private List<Transform> checkpointList = new List<Transform>();
 
     void Start()
     {
-        checkpointList = new List<Transform>(checkpoints);
+        AssignCheckpointsBasedOnDroneModel();
     }
 
     void Update()
@@ -30,20 +30,55 @@ public class DroneMovement : MonoBehaviour
         {
             currentCheckpointIndex++;
 
-            // If we've reached the last original checkpoint and haven't generated new points yet
-            if (currentCheckpointIndex == checkpoints.Length && !hasGeneratedNewPoints)
+            if (currentCheckpointIndex == checkpointList.Count && !hasGeneratedNewPoints)
             {
+                // Randomize speed between 0 and 4 when reaching final original checkpoint
+                moveSpeed = Random.Range(0f, 4f);
+
                 GenerateAndLoopNewPoints(checkpointList[checkpointList.Count - 1]);
                 hasGeneratedNewPoints = true;
                 loopingBetweenFinalPoints = true;
-                currentCheckpointIndex = checkpointList.Count - 2; // Start looping at new points
+                currentCheckpointIndex = checkpointList.Count - 2;
             }
 
-            // Loop between last two points if we're in that phase
             if (loopingBetweenFinalPoints && currentCheckpointIndex >= checkpointList.Count)
             {
-                // Loop only between the last two points
                 currentCheckpointIndex = checkpointList.Count - 2;
+            }
+        }
+    }
+
+    void AssignCheckpointsBasedOnDroneModel()
+    {
+        string fullName = gameObject.name; // e.g., "DroneM2 (1)"
+        string modelName = Regex.Match(fullName, @"DroneM\d+").Value; // Extract "DroneM1", "DroneM2", etc.
+
+        if (string.IsNullOrEmpty(modelName))
+        {
+            Debug.LogWarning($"Drone '{fullName}' does not match naming convention 'DroneM#'");
+            return;
+        }
+
+        string modelNumberStr = Regex.Match(modelName, @"\d+").Value;
+        if (!int.TryParse(modelNumberStr, out int modelNumber))
+        {
+            Debug.LogWarning($"Could not parse model number from '{modelName}'");
+            return;
+        }
+
+        int startCheckpoint = (modelNumber - 1) * 4 + 1; // 1-based index for Check Points
+
+        for (int i = 0; i < 4; i++)
+        {
+            string checkpointName = $"Check Points ({startCheckpoint + i})";
+            GameObject checkpointObj = GameObject.Find(checkpointName);
+            if (checkpointObj != null)
+            {
+                checkpointList.Add(checkpointObj.transform);
+            }
+            else
+            {
+                Debug.LogWarning($"Checkpoint '{checkpointName}' not found for {modelName}");
             }
         }
     }
@@ -52,13 +87,11 @@ public class DroneMovement : MonoBehaviour
     {
         Vector3 lastPos = lastCheckpoint.position;
 
-        float offsetXLeft = Random.Range(5f, 15f);
-        float offsetXRight = Random.Range(5f, 15f);
-        float offsetYLeft = Random.Range(-5f, 15f);
-        float offsetYRight = Random.Range(-5f, 15f);
+        float offsetXLeft = Random.Range(5f, 10f);
+        float offsetXRight = Random.Range(5f, 10f);
 
-        Vector3 leftPoint = new Vector3(lastPos.x - offsetXLeft, lastPos.y + offsetYLeft, lastPos.z);
-        Vector3 rightPoint = new Vector3(lastPos.x + offsetXRight, lastPos.y + offsetYRight, lastPos.z);
+        Vector3 leftPoint = new Vector3(lastPos.x - offsetXLeft, lastPos.y, lastPos.z);
+        Vector3 rightPoint = new Vector3(lastPos.x + offsetXRight, lastPos.y, lastPos.z);
 
         checkpointList.Add(CreateCheckpoint(leftPoint, "LeftPoint"));
         checkpointList.Add(CreateCheckpoint(rightPoint, "RightPoint"));
