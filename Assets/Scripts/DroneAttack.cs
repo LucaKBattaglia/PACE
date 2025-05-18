@@ -31,7 +31,10 @@ public class DroneAttack : MonoBehaviour
         // Calculate spawn position slightly in front of the drone
         Vector3 spawnPosition = transform.position + transform.forward * spawnOffset;
 
-        GetComponent<AudioSource>().Play();
+        AudioSource audio = GetComponent<AudioSource>();
+
+        audio.pitch = Random.Range(0.95f, 1.05f);
+        audio.Play();
         GameObject baseball = Instantiate(baseballPrefab, spawnPosition, Quaternion.identity);
         Rigidbody rb = baseball.GetComponent<Rigidbody>();
         if (rb != null)
