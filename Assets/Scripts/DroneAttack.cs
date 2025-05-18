@@ -12,12 +12,24 @@ public class DroneAttack : MonoBehaviour
 
     private float lastAttackTime;
 
+    void Start()
+    {
+        TryAssignPlayer();
+    }
+
     void Update()
     {
+        // Try to find player if not assigned yet (e.g. player spawned after this drone)
+        if (player == null)
+        {
+            TryAssignPlayer();
+            return;
+        }
+
         // Always look at the player
         transform.LookAt(player.transform);
 
-        // Only attack if player is within range
+        // Attack if in range and cooldown elapsed
         float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
         if (distanceToPlayer <= attackRange && Time.time >= lastAttackTime + attackInterval)
         {
@@ -26,15 +38,26 @@ public class DroneAttack : MonoBehaviour
         }
     }
 
+    void TryAssignPlayer()
+    {
+        GameObject head = GameObject.Find("Head");
+        if (head != null)
+        {
+            player = head;
+        }
+    }
+
     void Attack()
     {
-        // Calculate spawn position slightly in front of the drone
         Vector3 spawnPosition = transform.position + transform.forward * spawnOffset;
 
         AudioSource audio = GetComponent<AudioSource>();
+        if (audio != null)
+        {
+            audio.pitch = Random.Range(0.95f, 1.05f);
+            audio.Play();
+        }
 
-        audio.pitch = Random.Range(0.95f, 1.05f);
-        audio.Play();
         GameObject baseball = Instantiate(baseballPrefab, spawnPosition, Quaternion.identity);
         Rigidbody rb = baseball.GetComponent<Rigidbody>();
         if (rb != null)
@@ -43,7 +66,6 @@ public class DroneAttack : MonoBehaviour
         }
     }
 
-    // Draw the attack range as a wire sphere in the editor
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
