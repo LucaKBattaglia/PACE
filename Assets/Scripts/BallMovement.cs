@@ -47,6 +47,8 @@ public class BallMovement : MonoBehaviour
             }
 
             rb.velocity = finalVelocity;
+            other.gameObject.GetComponent<AudioSource>().Play();
+            GetComponent<AudioSource>().Play();
         }
     }
 }

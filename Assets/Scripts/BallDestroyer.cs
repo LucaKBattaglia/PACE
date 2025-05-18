@@ -4,6 +4,7 @@ using UnityEngine;
 public class BallDestroyer : MonoBehaviour
 {
     [SerializeField] private float lifetime = 10f; // Adjustable time before the ball despawns
+    [SerializeField] private AudioClip destructionSound; //Sound for when the drone is destroyed
 
     void Start()
     {
@@ -20,6 +21,7 @@ public class BallDestroyer : MonoBehaviour
 
         else if (other.gameObject.CompareTag("Drone"))
         {
+            AudioSource.PlayClipAtPoint(destructionSound, other.transform.position);
             Destroy(other.gameObject); // Destroy drone
             Destroy(gameObject); // Destroy ball regardless
         }
