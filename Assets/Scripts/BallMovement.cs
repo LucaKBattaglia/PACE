@@ -2,6 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using Liminal.SDK.Core;
+using Liminal.SDK.VR;
+using Liminal.SDK.VR.Input;
+using System.Text;
+using Liminal.SDK.VR.Avatars;
+using Liminal.SDK.VR.Devices.GearVR.Avatar;
+using Liminal.SDK.VR.Utils;
+
 public class BallMovement : MonoBehaviour
 {
     //private Vector3 speed = new Vector3();
@@ -60,6 +68,12 @@ public class BallMovement : MonoBehaviour
 
             rb.velocity = finalVelocity;
 
+            var device = VRDevice.Device;
+
+            var rightHandInput = device.PrimaryInputDevice;
+            var leftHandInput = device.SecondaryInputDevice;
+
+            rightHandInput?.SendInputHaptics(frequency: .5f, amplitude: .5f, duration: 0.05f);
             other.gameObject.GetComponent<AudioSource>().Play();
             GetComponent<AudioSource>().Play();
         }
