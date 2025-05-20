@@ -19,7 +19,8 @@ public class DroneMovement : MonoBehaviour
 
     void Update()
     {
-        if (checkpointList.Count == 0 || currentCheckpointIndex >= checkpointList.Count) return;
+        if (checkpointList.Count == 0 || currentCheckpointIndex >= checkpointList.Count)
+            return;
 
         Transform targetCheckpoint = checkpointList[currentCheckpointIndex];
         Vector3 direction = (targetCheckpoint.position - transform.position).normalized;
@@ -30,17 +31,17 @@ public class DroneMovement : MonoBehaviour
         {
             currentCheckpointIndex++;
 
+            // Reached the final checkpoint for the first time
             if (currentCheckpointIndex == checkpointList.Count && !hasGeneratedNewPoints)
             {
-                // Randomize speed between 0 and 4 when reaching final original checkpoint
                 moveSpeed = Random.Range(0f, 4f);
-
                 GenerateAndLoopNewPoints(checkpointList[checkpointList.Count - 1]);
                 hasGeneratedNewPoints = true;
                 loopingBetweenFinalPoints = true;
                 currentCheckpointIndex = checkpointList.Count - 2;
             }
 
+            // Loop between the two final points
             if (loopingBetweenFinalPoints && currentCheckpointIndex >= checkpointList.Count)
             {
                 currentCheckpointIndex = checkpointList.Count - 2;
@@ -51,7 +52,7 @@ public class DroneMovement : MonoBehaviour
     void AssignCheckpointsBasedOnDroneModel()
     {
         string fullName = gameObject.name; // e.g., "DroneM2 (1)"
-        string modelName = Regex.Match(fullName, @"DroneM\d+").Value; // Extract "DroneM1", "DroneM2", etc.
+        string modelName = Regex.Match(fullName, @"DroneM\d+").Value;
 
         if (string.IsNullOrEmpty(modelName))
         {
@@ -66,7 +67,7 @@ public class DroneMovement : MonoBehaviour
             return;
         }
 
-        int startCheckpoint = (modelNumber - 1) * 4 + 1; // 1-based index for Check Points
+        int startCheckpoint = (modelNumber - 1) * 4 + 1;
 
         for (int i = 0; i < 4; i++)
         {
@@ -101,6 +102,10 @@ public class DroneMovement : MonoBehaviour
     {
         GameObject checkpoint = new GameObject(name);
         checkpoint.transform.position = position;
+
+        // Make this checkpoint a child of the drone
+        checkpoint.transform.SetParent(this.transform);
+
         return checkpoint.transform;
     }
 }

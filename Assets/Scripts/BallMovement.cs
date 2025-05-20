@@ -2,6 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using Liminal.SDK.Core;
+using Liminal.SDK.VR;
+using Liminal.SDK.VR.Input;
+using System.Text;
+using Liminal.SDK.VR.Avatars;
+using Liminal.SDK.VR.Devices.GearVR.Avatar;
+using Liminal.SDK.VR.Utils;
+
 public class BallMovement : MonoBehaviour
 {
     //private Vector3 speed = new Vector3();
@@ -13,6 +21,10 @@ public class BallMovement : MonoBehaviour
 
     [SerializeField] private float boostFactor = 5f;
     [SerializeField] private float minSpeed = 2.5f;
+
+    [SerializeField] private float aimAssistAngle;
+    [SerializeField] private float aimAssistDistance;
+    [SerializeField] private float redirectStrength;
 
     // void OnTriggerEnter(Collider other)
     // {
@@ -46,9 +58,49 @@ public class BallMovement : MonoBehaviour
                 finalVelocity = finalVelocity.normalized * minSpeed;
             }
 
+            GameObject nearestTarget = FindObjectInCone(contactPoint, finalVelocity.normalized, aimAssistAngle, aimAssistDistance);
+            
+            if(nearestTarget != null)
+            {
+                Vector3 toTarget = (nearestTarget.transform.position - contactPoint).normalized;
+                finalVelocity = Vector3.Lerp(finalVelocity, toTarget * finalVelocity.magnitude, redirectStrength);
+            }
+
             rb.velocity = finalVelocity;
+
+            var device = VRDevice.Device;
+
+            var rightHandInput = device.PrimaryInputDevice;
+            var leftHandInput = device.SecondaryInputDevice;
+
+            rightHandInput?.SendInputHaptics(frequency: .5f, amplitude: .5f, duration: 0.05f);
             other.gameObject.GetComponent<AudioSource>().Play();
             GetComponent<AudioSource>().Play();
         }
+    }
+
+    private GameObject FindObjectInCone(Vector3 origin, Vector3 direction, float maxAngleDeg, float maxDistance) {
+        GameObject[] drones = GameObject.FindGameObjectsWithTag("Drone");
+
+        GameObject bestTarget = null;
+        float closestDistance = Mathf.Infinity;
+        float maxDot = Mathf.Cos(maxAngleDeg * Mathf.Deg2Rad);
+
+        foreach (GameObject drone in drones)
+        {
+            Vector3 toDrone = (drone.transform.position - origin);
+            float distance = toDrone.magnitude;
+            if (distance > maxDistance) continue;
+
+            Vector3 toDroneDir = toDrone.normalized;
+            float dot = Vector3.Dot(direction, toDroneDir);
+
+            if (dot > maxDot && distance < closestDistance)
+            {
+                closestDistance = distance;
+                bestTarget = drone;
+            }
+        }
+        return bestTarget;
     }
 }
