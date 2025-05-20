@@ -27,7 +27,7 @@ public class BaseballBat : MonoBehaviour
             Rigidbody rb = other.GetComponent<Rigidbody>();
             if (rb != null)
             {
-                GameManager.Instance.ballsHitCount++; 
+                //GameManager.Instance.ballsHitCount++; 
                 Vector3 hitDirection = (transform.position - previousPosition).normalized;
 
                 rb.velocity = hitDirection * hitForce;

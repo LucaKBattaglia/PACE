@@ -8,7 +8,7 @@ public class BallDestroyerCopy : MonoBehaviour
 
     private void Awake()
     {
-        lifetime = GameManager.Instance.ballLifetime;   //Put lifetime in game manager for easy editing
+        //lifetime = GameManager.Instance.ballLifetime;   //Put lifetime in game manager for easy editing
     }
 
     void Start()
@@ -23,20 +23,20 @@ public class BallDestroyerCopy : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             Destroy(gameObject);                    // Destroy ball if player is hit
-            GameManager.Instance.playerHitCount++;  // Add to player hit counter
+            //GameManager.Instance.playerHitCount++;  // Add to player hit counter
         }
 
         else if (other.gameObject.CompareTag("Drone"))
         {
             Destroy(other.gameObject);              // Destroy drone
             Destroy(gameObject);                    // Destroy ball regardless
-            GameManager.Instance.droneHitCount++;   // Add to drone hit count
+            //GameManager.Instance.droneHitCount++;   // Add to drone hit count
         }
     }
     private IEnumerator DestroyAfterTime()
     {
         yield return new WaitForSeconds(lifetime);
         Destroy(gameObject);
-        GameManager.Instance.ballsMissedCount++;
+        //GameManager.Instance.ballsMissedCount++;
     }
 }
