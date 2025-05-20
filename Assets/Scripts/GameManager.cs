@@ -12,6 +12,8 @@ public class Stage
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance;
+
     [Header("Spawn Points")]
     public Transform spawnPoint1;
     public Transform spawnPoint2;

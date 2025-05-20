@@ -12,9 +12,14 @@ public class DroneMovement : MonoBehaviour
     private bool loopingBetweenFinalPoints = false;
     private List<Transform> checkpointList = new List<Transform>();
 
+    private Transform player;
+    string fullName;
+
     void Start()
     {
+        fullName = gameObject.name; // e.g., "DroneM2 (1)"
         AssignCheckpointsBasedOnDroneModel();
+        player = GameObject.Find("Head").transform;
     }
 
     void Update()
@@ -51,19 +56,30 @@ public class DroneMovement : MonoBehaviour
 
     void AssignCheckpointsBasedOnDroneModel()
     {
-        string fullName = gameObject.name; // e.g., "DroneM2 (1)"
-        string modelName = Regex.Match(fullName, @"DroneM\d+").Value;
-
-        if (string.IsNullOrEmpty(modelName))
+        //THIS returns fullName anyway so it is irrelevant, waste of performance (Regex is expensive)
+        //string modelName = Regex.Match(fullName, @"DroneM\d+").Value;
+        /*if (string.IsNullOrEmpty(modelName))
         {
             Debug.LogWarning($"Drone '{fullName}' does not match naming convention 'DroneM#'");
             return;
-        }
+        }*/
 
-        string modelNumberStr = Regex.Match(modelName, @"\d+").Value;
+
+        //Check for fullName being null
+        if (string.IsNullOrEmpty(fullName))
+        {
+            Debug.LogWarning($"Drone '{fullName}' has invalid name");
+            return;
+        }
+        string modelNumberStr = Regex.Match(fullName, @"\d+").Value;
+        //Check here for naming convention
+        if (string.IsNullOrEmpty(modelNumberStr)) {
+            Debug.LogWarning($"Drone '{fullName}' does not match naming convention 'DroneM#'");
+            return;
+        }
         if (!int.TryParse(modelNumberStr, out int modelNumber))
         {
-            Debug.LogWarning($"Could not parse model number from '{modelName}'");
+            Debug.LogWarning($"Could not parse model number from '{fullName}'");
             return;
         }
 
@@ -72,6 +88,7 @@ public class DroneMovement : MonoBehaviour
         for (int i = 0; i < 4; i++)
         {
             string checkpointName = $"Check Points ({startCheckpoint + i})";
+            Debug.Log(checkpointName);
             GameObject checkpointObj = GameObject.Find(checkpointName);
             if (checkpointObj != null)
             {
@@ -79,11 +96,14 @@ public class DroneMovement : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning($"Checkpoint '{checkpointName}' not found for {modelName}");
+               Debug.LogWarning($"Checkpoint '{checkpointName}' not found for {fullName}");
             }
         }
     }
 
+    /// <summary>
+    ///Generates a new point to the left or right of the drone in WORLD space 
+    /// </summary>
     void GenerateAndLoopNewPoints(Transform lastCheckpoint)
     {
         Vector3 lastPos = lastCheckpoint.position;
@@ -94,6 +114,8 @@ public class DroneMovement : MonoBehaviour
         Vector3 leftPoint = new Vector3(lastPos.x - offsetXLeft, lastPos.y, lastPos.z);
         Vector3 rightPoint = new Vector3(lastPos.x + offsetXRight, lastPos.y, lastPos.z);
 
+        Debug.Log("Left point :" + leftPoint + "Right point :" + rightPoint);
+
         checkpointList.Add(CreateCheckpoint(leftPoint, "LeftPoint"));
         checkpointList.Add(CreateCheckpoint(rightPoint, "RightPoint"));
     }
@@ -103,8 +125,8 @@ public class DroneMovement : MonoBehaviour
         GameObject checkpoint = new GameObject(name);
         checkpoint.transform.position = position;
 
-        // Make this checkpoint a child of the drone
-        checkpoint.transform.SetParent(this.transform);
+        // Make this checkpoint a child of the drone ... Not anymore it pursues a point endlessly.
+        checkpoint.transform.SetParent(GameObject.Find("Check Points").transform);
 
         return checkpoint.transform;
     }
