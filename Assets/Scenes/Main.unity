@@ -2424,14 +2424,14 @@ MonoBehaviour:
   spawnPoint2: {fileID: 139940758}
   spawnPoint3: {fileID: 139940758}
   bossSpawnPoint: {fileID: 139940758}
-  droneM1: {fileID: 873074140604629097, guid: b16610ec0bf1ca542b1d3642634ca936, type: 3}
-  droneM2: {fileID: 873074140604629097, guid: b16610ec0bf1ca542b1d3642634ca936, type: 3}
+  droneM1: {fileID: 4324922893723495405, guid: 6e6613f825399aa4fb7350df0af2becf, type: 3}
+  droneM2: {fileID: 493588616541222932, guid: 8511c46c28c8bad419cbc87ec86243c5, type: 3}
   droneM3: {fileID: 873074140604629097, guid: b16610ec0bf1ca542b1d3642634ca936, type: 3}
   boss: {fileID: 4147669892855577398, guid: f68d468241a042b4da7edb46f7792f57, type: 3}
   stages:
-  - spawnInterval: 5
-    maxToSpawn: 3
-    maxConcurrent: 3
+  - spawnInterval: 1
+    maxToSpawn: 5
+    maxConcurrent: 5
   - spawnInterval: 5
     maxToSpawn: 3
     maxConcurrent: 5
@@ -6304,7 +6304,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1026595798
 Transform:
   m_ObjectHideFlags: 0
@@ -12135,7 +12135,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1653697152
 Transform:
   m_ObjectHideFlags: 0
@@ -12758,7 +12758,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1750363975
 Transform:
   m_ObjectHideFlags: 0
