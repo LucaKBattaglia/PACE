@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    public float skyboxRotationSpeed = 1.1f;
+
     [Header("Spawn Points")]
     public Transform spawnPoint1;
     public Transform spawnPoint2;
@@ -35,6 +37,11 @@ public class GameManager : MonoBehaviour
     private bool spawning = false;
 
     private List<GameObject> activeDrones = new List<GameObject>();
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     void Start()
     {
