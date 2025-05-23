@@ -92,5 +92,10 @@ PrefabInstance:
       propertyPath: checkpoints.Array.data[3]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5902090290135006979, guid: 8511c46c28c8bad419cbc87ec86243c5,
+        type: 3}
+      propertyPath: reverbZoneMixCustomCurve.m_Curve.Array.data[0].value
+      value: 0.215
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8511c46c28c8bad419cbc87ec86243c5, type: 3}

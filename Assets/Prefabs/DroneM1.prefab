@@ -12,6 +12,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: DroneM1
       objectReference: {fileID: 0}
+    - target: {fileID: 1021405448, guid: 252d9ce8b4badf2409aaa878a5ddbe76, type: 3}
+      propertyPath: checkpoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1021405448, guid: 252d9ce8b4badf2409aaa878a5ddbe76, type: 3}
+      propertyPath: checkpoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1021405448, guid: 252d9ce8b4badf2409aaa878a5ddbe76, type: 3}
+      propertyPath: checkpoints.Array.data[2]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1021405448, guid: 252d9ce8b4badf2409aaa878a5ddbe76, type: 3}
+      propertyPath: checkpoints.Array.data[3]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1021405448, guid: 252d9ce8b4badf2409aaa878a5ddbe76, type: 3}
+      propertyPath: moveSpeed
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4147669892855577403, guid: 252d9ce8b4badf2409aaa878a5ddbe76,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4147669892855577399, guid: 252d9ce8b4badf2409aaa878a5ddbe76,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -67,30 +92,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4147669892855577403, guid: 252d9ce8b4badf2409aaa878a5ddbe76,
+    - target: {fileID: 7979956502203464737, guid: 252d9ce8b4badf2409aaa878a5ddbe76,
         type: 3}
-      propertyPath: player
-      value: 
+      propertyPath: rolloffMode
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1021405448, guid: 252d9ce8b4badf2409aaa878a5ddbe76, type: 3}
-      propertyPath: checkpoints.Array.data[0]
-      value: 
+    - target: {fileID: 7979956502203464737, guid: 252d9ce8b4badf2409aaa878a5ddbe76,
+        type: 3}
+      propertyPath: DopplerLevel
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1021405448, guid: 252d9ce8b4badf2409aaa878a5ddbe76, type: 3}
-      propertyPath: checkpoints.Array.data[1]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1021405448, guid: 252d9ce8b4badf2409aaa878a5ddbe76, type: 3}
-      propertyPath: checkpoints.Array.data[2]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1021405448, guid: 252d9ce8b4badf2409aaa878a5ddbe76, type: 3}
-      propertyPath: checkpoints.Array.data[3]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1021405448, guid: 252d9ce8b4badf2409aaa878a5ddbe76, type: 3}
-      propertyPath: moveSpeed
-      value: 9
+    - target: {fileID: 7979956502203464737, guid: 252d9ce8b4badf2409aaa878a5ddbe76,
+        type: 3}
+      propertyPath: reverbZoneMixCustomCurve.m_Curve.Array.data[0].value
+      value: 0.219
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 252d9ce8b4badf2409aaa878a5ddbe76, type: 3}

@@ -74,8 +74,18 @@ public class BallMovement : MonoBehaviour
             var leftHandInput = device.SecondaryInputDevice;
 
             rightHandInput?.SendInputHaptics(frequency: .5f, amplitude: .5f, duration: 0.05f);
-            other.gameObject.GetComponent<AudioSource>().Play();
+
+            //AUDIO EFFECTS
+            //call Bat audio effect
+            AudioSource batAudio = other.gameObject.GetComponent<AudioSource>();
+            batAudio.pitch = Random.Range(0.95f, 1.2f);
+            batAudio.reverbZoneMix = Random.Range(1f, 1.05f);
+            batAudio.Play();
+            Debug.Log(batAudio.pitch);
+
+            //call this ball audio effect
             GetComponent<AudioSource>().Play();
+
         }
     }
 

@@ -51,6 +51,7 @@ public class DroneAttack : MonoBehaviour
     {
         Vector3 spawnPosition = transform.position + transform.forward * spawnOffset;
 
+        //AUDIO EFFECTS
         AudioSource audio = GetComponent<AudioSource>();
         if (audio != null)
         {
