@@ -95,17 +95,32 @@ PrefabInstance:
     - target: {fileID: 7979956502203464737, guid: 252d9ce8b4badf2409aaa878a5ddbe76,
         type: 3}
       propertyPath: rolloffMode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7979956502203464737, guid: 252d9ce8b4badf2409aaa878a5ddbe76,
-        type: 3}
-      propertyPath: DopplerLevel
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7979956502203464737, guid: 252d9ce8b4badf2409aaa878a5ddbe76,
         type: 3}
+      propertyPath: DopplerLevel
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7979956502203464737, guid: 252d9ce8b4badf2409aaa878a5ddbe76,
+        type: 3}
       propertyPath: reverbZoneMixCustomCurve.m_Curve.Array.data[0].value
-      value: 0.219
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7979956502203464737, guid: 252d9ce8b4badf2409aaa878a5ddbe76,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 2b6b3d231f2f8a34a87cd9599db7f5f2, type: 3}
+    - target: {fileID: 7979956502203464737, guid: 252d9ce8b4badf2409aaa878a5ddbe76,
+        type: 3}
+      propertyPath: MaxDistance
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7979956502203464737, guid: 252d9ce8b4badf2409aaa878a5ddbe76,
+        type: 3}
+      propertyPath: BypassEffects
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 252d9ce8b4badf2409aaa878a5ddbe76, type: 3}

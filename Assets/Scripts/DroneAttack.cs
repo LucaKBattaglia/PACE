@@ -55,7 +55,7 @@ public class DroneAttack : MonoBehaviour
         AudioSource audio = GetComponent<AudioSource>();
         if (audio != null)
         {
-            audio.pitch = Random.Range(0.95f, 1.05f);
+            audio.pitch = Random.Range(0.95f, 1.1f);
             audio.Play();
         }
 
