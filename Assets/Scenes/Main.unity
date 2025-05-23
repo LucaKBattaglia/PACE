@@ -2401,6 +2401,7 @@ GameObject:
   m_Component:
   - component: {fileID: 320476824}
   - component: {fileID: 320476823}
+  - component: {fileID: 320476825}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2420,24 +2421,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef4e7c79da344e94daca344c51e9bfd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPoint1: {fileID: 139940758}
-  spawnPoint2: {fileID: 139940758}
-  spawnPoint3: {fileID: 139940758}
-  bossSpawnPoint: {fileID: 139940758}
-  droneM1: {fileID: 4324922893723495405, guid: 6e6613f825399aa4fb7350df0af2becf, type: 3}
-  droneM2: {fileID: 493588616541222932, guid: 8511c46c28c8bad419cbc87ec86243c5, type: 3}
-  droneM3: {fileID: 873074140604629097, guid: b16610ec0bf1ca542b1d3642634ca936, type: 3}
-  boss: {fileID: 4147669892855577398, guid: f68d468241a042b4da7edb46f7792f57, type: 3}
-  stages:
-  - spawnInterval: 1
-    maxToSpawn: 5
-    maxConcurrent: 5
-  - spawnInterval: 5
-    maxToSpawn: 3
-    maxConcurrent: 5
-  - spawnInterval: 3
-    maxToSpawn: 4
-    maxConcurrent: 5
+  skyboxRotationSpeed: 1.1
+  spawnPoint1: {fileID: 0}
+  spawnPoint2: {fileID: 0}
+  spawnPoint3: {fileID: 0}
+  bossSpawnPoint: {fileID: 0}
+  droneM1: {fileID: 0}
+  droneM2: {fileID: 0}
+  droneM3: {fileID: 0}
+  boss: {fileID: 0}
+  stages: []
 --- !u!4 &320476824
 Transform:
   m_ObjectHideFlags: 0
@@ -2452,6 +2445,18 @@ Transform:
   m_Father: {fileID: 1249289796}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &320476825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 320476822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b52a3de776e1b2488cebf20cd2dd96f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &323381887
 GameObject:
   m_ObjectHideFlags: 0
@@ -8850,15 +8855,15 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 26b0757ca7f74874f8903f742903822d, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 1cd696c882e09c44e99435b824797763, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.6
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 88
+  Priority: 128
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -9730,25 +9735,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1413238393}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1418092508 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1260162970045296579, guid: 22276a8657744e04cba8ad0a2caf4195,
-    type: 3}
-  m_PrefabInstance: {fileID: 1546554905}
-  m_PrefabAsset: {fileID: 0}
---- !u!135 &1418092509
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1418092508}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1441612120
 GameObject:
   m_ObjectHideFlags: 0
@@ -10828,7 +10814,7 @@ PrefabInstance:
     - target: {fileID: 1260162970045296579, guid: 22276a8657744e04cba8ad0a2caf4195,
         type: 3}
       propertyPath: m_TagString
-      value: Boundary
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 1260162969423114810, guid: 22276a8657744e04cba8ad0a2caf4195,
         type: 3}
