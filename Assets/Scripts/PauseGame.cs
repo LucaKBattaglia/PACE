@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class Pause : MonoBehaviour
+
+public class PauseGame : MonoBehaviour
 {
 
     public static bool GameIsPaused = false;
@@ -11,7 +11,7 @@ public class Pause : MonoBehaviour
 
     // Update is called once per frame
     void Update(){
-         if (input.GetKeyDown(KeyCode.Escape))
+         if (Input.GetKeyDown(KeyCode.Escape))
     {
        if (GameIsPaused)
        {
@@ -20,7 +20,8 @@ public class Pause : MonoBehaviour
        {
             Pause();
        }
-}
+    }
+ }
     void Resume ()
     {
         pauseMenuUI.SetActive(false);
@@ -33,6 +34,6 @@ public class Pause : MonoBehaviour
         Time.timeScale = 0f;
         GameIsPaused = true;
     }
-}
+
 
 }
