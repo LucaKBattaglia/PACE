@@ -12,9 +12,6 @@ using Liminal.SDK.VR.Utils;
 
 public class BallMovement : MonoBehaviour
 {
-    //private Vector3 speed = new Vector3();
-    // Start is called before the first frame update
-
     private Rigidbody rb;
     private BatVelocityEstimator otherRb;
     private Vector3 newVelocity;
@@ -26,18 +23,14 @@ public class BallMovement : MonoBehaviour
     [SerializeField] private float aimAssistDistance;
     [SerializeField] private float redirectStrength;
 
-    // void OnTriggerEnter(Collider other)
-    // {
-    //     if(other.gameObject.CompareTag("Bat")) {
+    [SerializeField] private float ballRotationSpeed = 1f;
+    private Vector3 rotationAxis;
 
-    //         rb = GetComponent<Rigidbody>();
-    //         otherRb = other.GetComponent<Rigidbody>();
-    //         //newVelocity = Vector3.Cross(rb.velocity, otherRb.velocity);
-    //         newVelocity = otherRb.tipVelocity;
-    //         rb.velocity = newVelocity;
-    //         //Debug.Log(otherRb.velocity);
-    //     }
-    // }
+    private void Start()
+    {
+        //calculate rotation axis
+        rotationAxis = new Vector3(Random.value, Random.value, Random.value);
+    }
 
     void OnCollisionEnter(Collision other) {
         if(other.gameObject.CompareTag("Bat")) {
@@ -112,5 +105,11 @@ public class BallMovement : MonoBehaviour
             }
         }
         return bestTarget;
+    }
+
+    private void Update()
+    {
+        //Visually rotate the ball, doesn't affect direction (I think)
+        transform.Rotate(rotationAxis, ballRotationSpeed * Time.deltaTime);
     }
 }

@@ -2431,9 +2431,9 @@ MonoBehaviour:
   droneM3: {fileID: 873074140604629097, guid: b16610ec0bf1ca542b1d3642634ca936, type: 3}
   boss: {fileID: 4147669892855577398, guid: f68d468241a042b4da7edb46f7792f57, type: 3}
   stages:
-  - spawnInterval: 1
-    maxToSpawn: 1
-    maxConcurrent: 1
+  - spawnInterval: 0
+    maxToSpawn: 3
+    maxConcurrent: 4
 --- !u!4 &320476824
 Transform:
   m_ObjectHideFlags: 0
