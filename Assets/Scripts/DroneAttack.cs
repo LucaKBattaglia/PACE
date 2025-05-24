@@ -9,13 +9,19 @@ public class DroneAttack : MonoBehaviour
     public float attackRange = 15f;
     [SerializeField] private float fireSpeed = 10f;
     [SerializeField] private float spawnOffset = 1.5f; // Distance in front of the drone to spawn the baseball
-
+    [SerializeField] private AnimationCurve animateCurve;
+    private float animationTime;
+    private float animationDuration;
     private float lastAttackTime;
+    [SerializeField] private float animationScaleFactor = 1f;
+    [SerializeField] private float animationDurationScale = 1f;
 
     void Start()
     {
         TryAssignPlayer();
+        TryKeyframe();
     }
+    
 
     void Update()
     {
@@ -33,9 +39,10 @@ public class DroneAttack : MonoBehaviour
         float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
         if (distanceToPlayer <= attackRange && Time.time >= lastAttackTime + attackInterval)
         {
-            Attack();
+            StartCoroutine(Attacking());
             lastAttackTime = Time.time;
         }
+        
     }
 
     void TryAssignPlayer()
@@ -45,6 +52,24 @@ public class DroneAttack : MonoBehaviour
         {
             player = head;
         }
+    }
+
+    void TryKeyframe()
+    {
+        if (animateCurve == null || animateCurve.length == 0)
+        {
+            Debug.LogWarning("AnimationCurve is empty! Please assign keyframes.");
+            animationDuration = 0f;
+            return;
+        }
+
+        Debug.Log("Animation keys: " + animateCurve.length);
+        foreach (Keyframe keyframe in animateCurve.keys)
+        {
+            Debug.Log(keyframe);
+        }
+
+        animationDuration = animateCurve.keys[animateCurve.length - 1].time;
     }
 
     void Attack()
@@ -65,6 +90,33 @@ public class DroneAttack : MonoBehaviour
         {
             rb.velocity = transform.forward * fireSpeed;
         }
+    }
+
+    //Get the duration of the animation curve from the last key
+    
+    IEnumerator Charging()
+    {
+        //reset animation time to 0
+        animationTime = 0f;
+        Debug.Log(animationDuration);
+        while (animationTime < animationDuration)
+        {
+            float tempSize = 1 + animateCurve.Evaluate(animationTime) * animationScaleFactor;
+            this.transform.localScale = new Vector3(tempSize, tempSize, tempSize);
+            Debug.Log(animationTime + "+" + tempSize);
+            // Update time of the animation curve to however much time has passed
+            animationTime += Time.deltaTime * animationDurationScale;
+            yield return null; //wait for the next frame
+        }
+        //reset scale
+        this.transform.localScale = new Vector3(1, 1, 1);
+    }
+
+    IEnumerator Attacking() {
+        //Go through whole animation curve
+        yield return StartCoroutine(Charging());
+        //Then Attack
+        Attack();
     }
 
     void OnDrawGizmosSelected()

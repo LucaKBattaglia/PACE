@@ -34,8 +34,93 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4147669892855577403, guid: 252d9ce8b4badf2409aaa878a5ddbe76,
         type: 3}
+      propertyPath: animateCurve.m_Curve.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4147669892855577403, guid: 252d9ce8b4badf2409aaa878a5ddbe76,
+        type: 3}
       propertyPath: player
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4147669892855577403, guid: 252d9ce8b4badf2409aaa878a5ddbe76,
+        type: 3}
+      propertyPath: animateCurve.m_Curve.Array.data[0].time
+      value: 0.0011651814
+      objectReference: {fileID: 0}
+    - target: {fileID: 4147669892855577403, guid: 252d9ce8b4badf2409aaa878a5ddbe76,
+        type: 3}
+      propertyPath: animateCurve.m_Curve.Array.data[0].value
+      value: 0.00064094365
+      objectReference: {fileID: 0}
+    - target: {fileID: 4147669892855577403, guid: 252d9ce8b4badf2409aaa878a5ddbe76,
+        type: 3}
+      propertyPath: animateCurve.m_Curve.Array.data[0].inSlope
+      value: 0.0053826445
+      objectReference: {fileID: 0}
+    - target: {fileID: 4147669892855577403, guid: 252d9ce8b4badf2409aaa878a5ddbe76,
+        type: 3}
+      propertyPath: animateCurve.m_Curve.Array.data[0].outSlope
+      value: 0.0053826445
+      objectReference: {fileID: 0}
+    - target: {fileID: 4147669892855577403, guid: 252d9ce8b4badf2409aaa878a5ddbe76,
+        type: 3}
+      propertyPath: animateCurve.m_Curve.Array.data[1].time
+      value: 0.9023149
+      objectReference: {fileID: 0}
+    - target: {fileID: 4147669892855577403, guid: 252d9ce8b4badf2409aaa878a5ddbe76,
+        type: 3}
+      propertyPath: animateCurve.m_Curve.Array.data[1].value
+      value: 0.47914988
+      objectReference: {fileID: 0}
+    - target: {fileID: 4147669892855577403, guid: 252d9ce8b4badf2409aaa878a5ddbe76,
+        type: 3}
+      propertyPath: animateCurve.m_Curve.Array.data[1].inSlope
+      value: 0.81338245
+      objectReference: {fileID: 0}
+    - target: {fileID: 4147669892855577403, guid: 252d9ce8b4badf2409aaa878a5ddbe76,
+        type: 3}
+      propertyPath: animateCurve.m_Curve.Array.data[1].outSlope
+      value: 0.81338245
+      objectReference: {fileID: 0}
+    - target: {fileID: 4147669892855577403, guid: 252d9ce8b4badf2409aaa878a5ddbe76,
+        type: 3}
+      propertyPath: animateCurve.m_Curve.Array.data[1].inWeight
+      value: 0.031725038
+      objectReference: {fileID: 0}
+    - target: {fileID: 4147669892855577403, guid: 252d9ce8b4badf2409aaa878a5ddbe76,
+        type: 3}
+      propertyPath: animateCurve.m_Curve.Array.data[1].outWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 4147669892855577403, guid: 252d9ce8b4badf2409aaa878a5ddbe76,
+        type: 3}
+      propertyPath: animateCurve.m_Curve.Array.data[2].time
+      value: 1.0001806
+      objectReference: {fileID: 0}
+    - target: {fileID: 4147669892855577403, guid: 252d9ce8b4badf2409aaa878a5ddbe76,
+        type: 3}
+      propertyPath: animateCurve.m_Curve.Array.data[2].value
+      value: 0.00032813847
+      objectReference: {fileID: 0}
+    - target: {fileID: 4147669892855577403, guid: 252d9ce8b4badf2409aaa878a5ddbe76,
+        type: 3}
+      propertyPath: animateCurve.m_Curve.Array.data[0].outWeight
+      value: 0.115189366
+      objectReference: {fileID: 0}
+    - target: {fileID: 4147669892855577403, guid: 252d9ce8b4badf2409aaa878a5ddbe76,
+        type: 3}
+      propertyPath: animateCurve.m_Curve.Array.data[2].inSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4147669892855577403, guid: 252d9ce8b4badf2409aaa878a5ddbe76,
+        type: 3}
+      propertyPath: animateCurve.m_Curve.Array.data[2].outSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4147669892855577403, guid: 252d9ce8b4badf2409aaa878a5ddbe76,
+        type: 3}
+      propertyPath: animateCurve.m_Curve.Array.data[2].inWeight
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4147669892855577399, guid: 252d9ce8b4badf2409aaa878a5ddbe76,
         type: 3}

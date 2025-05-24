@@ -2422,15 +2422,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skyboxRotationSpeed: 1.1
-  spawnPoint1: {fileID: 0}
-  spawnPoint2: {fileID: 0}
-  spawnPoint3: {fileID: 0}
-  bossSpawnPoint: {fileID: 0}
-  droneM1: {fileID: 0}
-  droneM2: {fileID: 0}
-  droneM3: {fileID: 0}
-  boss: {fileID: 0}
-  stages: []
+  spawnPoint1: {fileID: 1653697152}
+  spawnPoint2: {fileID: 1026595798}
+  spawnPoint3: {fileID: 139940758}
+  bossSpawnPoint: {fileID: 1750363975}
+  droneM1: {fileID: 4324922893723495405, guid: 6e6613f825399aa4fb7350df0af2becf, type: 3}
+  droneM2: {fileID: 493588616541222932, guid: 8511c46c28c8bad419cbc87ec86243c5, type: 3}
+  droneM3: {fileID: 873074140604629097, guid: b16610ec0bf1ca542b1d3642634ca936, type: 3}
+  boss: {fileID: 4147669892855577398, guid: f68d468241a042b4da7edb46f7792f57, type: 3}
+  stages:
+  - spawnInterval: 1
+    maxToSpawn: 1
+    maxConcurrent: 1
 --- !u!4 &320476824
 Transform:
   m_ObjectHideFlags: 0

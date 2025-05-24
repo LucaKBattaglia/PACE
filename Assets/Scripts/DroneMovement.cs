@@ -88,7 +88,6 @@ public class DroneMovement : MonoBehaviour
         for (int i = 0; i < 4; i++)
         {
             string checkpointName = $"Check Points ({startCheckpoint + i})";
-            Debug.Log(checkpointName);
             GameObject checkpointObj = GameObject.Find(checkpointName);
             if (checkpointObj != null)
             {
@@ -113,8 +112,6 @@ public class DroneMovement : MonoBehaviour
 
         Vector3 leftPoint = new Vector3(lastPos.x - offsetXLeft, lastPos.y, lastPos.z);
         Vector3 rightPoint = new Vector3(lastPos.x + offsetXRight, lastPos.y, lastPos.z);
-
-        Debug.Log("Left point :" + leftPoint + "Right point :" + rightPoint);
 
         checkpointList.Add(CreateCheckpoint(leftPoint, "LeftPoint"));
         checkpointList.Add(CreateCheckpoint(rightPoint, "RightPoint"));
