@@ -26,12 +26,6 @@ public class BallMovement : MonoBehaviour
     [SerializeField] private float ballRotationSpeed = 1f;
     private Vector3 rotationAxis;
 
-    private void Start()
-    {
-        //calculate rotation axis
-        rotationAxis = new Vector3(Random.value, Random.value, Random.value);
-    }
-
     void OnCollisionEnter(Collision other) {
         if(other.gameObject.CompareTag("Bat")) {
             var batEstimator = other.gameObject.GetComponent<BatVelocityEstimator>();
@@ -79,6 +73,7 @@ public class BallMovement : MonoBehaviour
             //call this ball audio effect
             GetComponent<AudioSource>().Play();
 
+            GetComponent<ParticleSystem>().Play();
         }
     }
 

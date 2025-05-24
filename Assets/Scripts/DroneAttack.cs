@@ -62,13 +62,6 @@ public class DroneAttack : MonoBehaviour
             animationDuration = 0f;
             return;
         }
-
-        Debug.Log("Animation keys: " + animateCurve.length);
-        foreach (Keyframe keyframe in animateCurve.keys)
-        {
-            Debug.Log(keyframe);
-        }
-
         animationDuration = animateCurve.keys[animateCurve.length - 1].time;
     }
 
@@ -103,7 +96,6 @@ public class DroneAttack : MonoBehaviour
         {
             float tempSize = 1 + animateCurve.Evaluate(animationTime) * animationScaleFactor;
             this.transform.localScale = new Vector3(tempSize, tempSize, tempSize);
-            Debug.Log(animationTime + "+" + tempSize);
             // Update time of the animation curve to however much time has passed
             animationTime += Time.deltaTime * animationDurationScale;
             yield return null; //wait for the next frame
