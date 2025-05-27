@@ -78,8 +78,6 @@ public class BallMovement : MonoBehaviour
 
             //call this ball audio effect
             GetComponent<AudioSource>().Play();
-
-            GetComponent<ParticleSystem>().Play();
         }
     }
 

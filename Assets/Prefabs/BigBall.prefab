@@ -126,6 +126,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifetime: 10
   destructionSound: {fileID: 8300000, guid: 0fa688b3485719348b37ee49c0a03fb0, type: 3}
+  particles: {fileID: 2816077506908789747, guid: c773f9b95c4f3e84fb7cab224ce952e4,
+    type: 3}
 --- !u!114 &-1512194710623670464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,6 +142,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boostFactor: 5
   minSpeed: 2.5
+  aimAssistAngle: 0
+  aimAssistDistance: 0
+  redirectStrength: 0
+  ballRotationSpeed: 1
 --- !u!54 &-4873545192088539355
 Rigidbody:
   m_ObjectHideFlags: 0
