@@ -26,6 +26,10 @@ public class BallDestroyer : MonoBehaviour
             AudioSource.PlayClipAtPoint(destructionSound, other.transform.position);
             Destroy(other.gameObject); // Destroy drone
             Instantiate(particles, this.transform.position, Quaternion.identity); //Instantiate particle effect at death position
+             if (ScoreManager.instance != null)
+        {
+            ScoreManager.instance.AddScore(10);
+        }
             Destroy(gameObject); // Destroy ball regardless
         }
     }
