@@ -2518,7 +2518,7 @@ MonoBehaviour:
     maxToSpawn: 8
     maxConcurrent: 6
   fallbackCheckpoint: {fileID: 99787209}
-  stageTimeout: 25
+  stageTimeout: 30
 --- !u!4 &320476824
 Transform:
   m_ObjectHideFlags: 0
