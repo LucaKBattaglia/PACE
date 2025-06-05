@@ -8,6 +8,7 @@ TagManager:
   - Bat
   - Drone
   - Boundary
+  - KillZone
   layers:
   - Default
   - TransparentFX

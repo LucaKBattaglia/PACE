@@ -31,6 +31,10 @@ public class GameManager : MonoBehaviour
     [Header("Stage Settings")]
     public List<Stage> stages = new List<Stage>();
 
+    [Header("Safety Net Settings")]
+    public Transform fallbackCheckpoint; // Assign in Inspector
+    public float stageTimeout = 30f; // Time in seconds before redirect
+
     private int currentStage = 0;
     private int totalSpawned = 0;
     private int totalDestroyed = 0;
@@ -57,7 +61,6 @@ public class GameManager : MonoBehaviour
             currentStage++;
         }
 
-        // After last wave
         SpawnBoss();
     }
 
@@ -66,6 +69,8 @@ public class GameManager : MonoBehaviour
         totalSpawned = 0;
         totalDestroyed = 0;
         spawning = true;
+        float startTime = Time.time;
+        bool fallbackTriggered = false;
 
         while (totalDestroyed < maxToSpawn)
         {
@@ -83,6 +88,25 @@ public class GameManager : MonoBehaviour
             }
 
             totalDestroyed = totalSpawned - activeDrones.Count;
+
+            // Trigger fallback behavior after timeout
+            if (!fallbackTriggered && Time.time - startTime > stageTimeout)
+            {
+                fallbackTriggered = true;
+                Debug.Log("Stage timeout reached. Redirecting all active drones.");
+
+                foreach (GameObject drone in activeDrones)
+                {
+                    if (drone != null)
+                    {
+                        DroneMovement movement = drone.GetComponent<DroneMovement>();
+                        if (movement != null)
+                        {
+                            movement.RedirectToFallback(fallbackCheckpoint);
+                        }
+                    }
+                }
+            }
         }
 
         spawning = false;
